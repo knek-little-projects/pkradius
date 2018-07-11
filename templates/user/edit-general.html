@@ -1,0 +1,91 @@
+{% extends "../main.html" %}
+
+{% block title %}
+    Общая информация о пользователе {{ user['login'] }}
+{% end %}
+
+{% block address %}
+    <a href="{{ reverse_url('user-list') }}">Пользователи</a>
+    /
+    <a href="{{ reverse_url('user-view', user['login']) }}">{{ user['login'] }}</a>
+    /
+    редактировать профиль
+{% end %}
+
+{% block content %}    
+    {% include "nav.html" %}
+    
+    <form class="general" method="post">
+        {% module xsrf_form_html() %}
+        <table>
+            <tr>
+                <td>
+                    Логин
+                </td>
+                <td>
+                    <input name="login" type="text" autofocus required value="{{ user['login'] }}">
+                </td>
+                <td class="error">
+                    {% if flags.get("login_collision", False) %}
+                        Пользователь с таким логином уже существует
+                    {% end %} 
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    E-Mail
+                </td>
+                <td>
+                    <input name="email" type="email" required value="{{ user['email'] }}">
+                </td>
+                <td class="error">
+                    {% if flags.get("email_collision", False) %}
+                        Пользователь с такой почтой уже существует
+                    {% end %} 
+                </td>
+            </tr>
+        
+            {% if current_user.is_admin %}
+            <tr>
+                <td>
+                    Группа
+                </td>
+                <td>
+                    <select name="access_level">
+                        {% for access_level, group_name in zip(range(4), ('Анонимус', 'Пользователь', 'Модератор', 'Администратор')) %}
+                            <option value="{{ access_level }}" {% if user['access_level'] == access_level %}selected{% end %}>{{ group_name }}</option>
+                        {% end %}
+                    </select>
+                </td>
+                <td>
+                </td>
+            </tr>
+            {% end %}
+        
+            {% if not current_user.is_admin %}
+            <tr>
+                <td>
+                    Пароль для подтверждения
+                </td>
+                <td>
+                    <input name="password" type="password" required>
+                </td>
+                <td class="error">
+                    {% if flags.get("wrong_password", False) %}
+                        Введите верный пароль!
+                    {% end %} 
+                </td>
+            </tr>
+            {% end %}
+        
+            <tr class="controls">
+                <td>
+                </td>
+                <td colspan="2">
+                    <input type="submit" value="Изменить">
+                    <a href="{{ reverse_url('user-view', user['login']) }}">&larr; Назад к профилю</a>
+                </td>
+            </tr>
+    </form>
+{% end %}

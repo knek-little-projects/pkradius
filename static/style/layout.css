@@ -1,0 +1,50 @@
+/*
+    Layout for "templates/main.html":
+    
+    +---------------------------------------------------+
+    |  body                                             |
+    |                                                   |
+    |  +-------------------+     +-------------------+  |
+    |  | .left-column      |     | .right-column     |  |
+    |  |                   |     |                   |  |
+    |  | +-------------+   |     | +---------------+ |  |
+    |  | | .main-logo  |   |     | | .main-content | |  |
+    |  | +-------------+   |     | |               | |  |
+    |  | | .main-menu  |   |     | |               | |  |
+    |  | +-------------+   |     | +---------------+ |  |
+    |  |                   |     |                   |  |
+    |  +-------------------+     +-------------------+  |
+    |                                                   |
+    +---------------------------------------------------+
+*/
+
+
+.layout.left-column {
+    float: left;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.9);
+    width: 200px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+.layout.right-column {
+    display: inline-block;
+    position: absolute;
+    margin-right: 10px;
+    border: 1px solid #aaa;
+    background: #fefefe;
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #e0e0e0;
+    background: url("/static/img/noise.png");
+}
+
+.layout.main-content {
+    background: transparent;
+}
+
+.layout.main-menu {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

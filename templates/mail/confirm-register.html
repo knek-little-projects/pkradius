@@ -1,0 +1,14 @@
+<p>
+    Ув. <b>{{ user['login'] }}</b>!
+</p>
+
+<p>
+    Пожалуйста, подтвердите регистрацию аккаунта перейдя по ссылке: 
+    <a href="{{ confirm_url }}">
+        {{ confirm_url }}
+    </a>
+</p>
+
+<p>
+    {{ confirm_description }}
+</p>

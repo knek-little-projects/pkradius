@@ -1,0 +1,25 @@
+body {
+    background: url(/static/img/background.jpg);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.no-filter {
+    -webkit-filter: none; /* For Webkit browsers */
+    filter: none; /* For IE 6 - 9 */
+    -webkit-transition: none; /* Fade to color for Chrome and Safari */
+    text-decoration: underline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+img.window {
+    cursor: pointer;
+}

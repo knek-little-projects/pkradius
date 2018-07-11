@@ -1,0 +1,20 @@
+<table class="{{ table_class }}">
+    {% for name, value in rows %}
+    <tr>
+        <th>
+            {% if isinstance(fields, dict) %}
+                {{ fields[name] }}
+            {% end %}       
+                {{ name }}
+            {% end %} 
+        </th>
+        <td>
+            {% if isinstance(value, dict) %}
+                {% module Document(value, child=True) %}
+            {% else %}
+                {{ value }}
+            {% end %}
+        </td>
+    </tr>
+    {% end %}
+</table>

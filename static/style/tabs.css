@@ -1,0 +1,54 @@
+/*
+    Navigation tabs:
+       _________________________
+      /            /           /
+     /   TAB 1    /   TAB 2   /
+    /            /           /
+    
+*/
+
+ul.tabs 
+{
+    padding: 0px;
+    margin: 0px;
+    padding-top: 10px;
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+ul.tabs.no-bottom-margin {
+    margin-bottom: 0px;
+}
+
+ul.tabs li:first-child {
+    margin-left: 20px;
+}
+
+ul.tabs li 
+{
+    display: inline-block;
+    border: none;
+    background: #fafafa;
+    padding: 10px;
+    margin: 0px;
+    border-top: 4px solid #a44;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-radius: 5px 5px 0px 0px;
+}
+
+ul.tabs li:hover {
+    background: rgba(100,30,30,0.2);
+}
+
+ul.tabs li a:hover {
+    text-decoration: underline;
+}
+
+ul.tabs li a
+{
+    text-decoration: none;
+    border: none;
+    text-align: left;
+}

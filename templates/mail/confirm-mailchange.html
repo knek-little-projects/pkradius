@@ -1,0 +1,16 @@
+<p>
+    Ув. <b>{{ user['login'] }}</b>!
+</p>
+
+<p>
+    Пожалуйста, подтвердите изменение Вашей почты со старого адреса 
+    (<b>{{user['email']}}</b>) на новый 
+    (<b>{{confirm['data']}}</b>) по ссылке: 
+    <a href="{{ confirm_url }}">
+        {{ confirm_url }}
+    </a>
+</p>
+
+<p>
+    {{ confirm_description }}
+</p>

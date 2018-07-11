@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block title %}
+    {% if status_code == 404 %}
+        {% set status_text = "Страница не найдена" %}
+    {% elif status_code == 403 %}
+        {% set status_text = "Доступ ограничен" %}
+    {% else %}
+        {% set status_text = "Непредвиденная ошибка" %}
+    {% end %}
+    {{ status_text }}
+{% end %}
+
+{% block address %}
+    <center>
+        {{ status_text }}
+    </center>
+{% end %}
+
+{% block content %}
+    <center class="text-shadow">
+        <div id="status-code">
+            {{ status_code }}
+        </div>
+        {% if reason %}
+            <p>{{ reason }}</p>
+        {% end %}
+        {% if kwargs %}
+            <p>{{ kwargs }}</p>
+        {% end %}
+        <p><a href="/">&larr; Вернуться на главную страницу</a></p>
+    </center>
+{% end %}

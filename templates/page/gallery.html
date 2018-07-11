@@ -1,0 +1,177 @@
+{% extends ../main.html %}
+
+{% block title %}
+    Галерея
+{% end %}
+
+{% block content %}
+    <script>
+        $.fn.center = function() {
+            this.css("position", "absolute");
+            this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+            this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+            return this;
+        }
+
+        function showImage($original) {
+            $("#image-window").remove()
+            var $window = $("<div style='box-shadow: 4px 4px rgba(0,0,0,0.9);border-radius:20px;' id='image-window'><\/div>").width(window.screen.width * 0.8).height(window.screen.height * 0.8).css("position", "absolute").css("background", "rgba(0,0,0,0.9)").css("z-index", "1000").css("text-align", "center").appendTo("body").center().click(function() {
+                $(this).remove()
+            })
+            var $table = $("<table style='color:white;font-weight:bold;border-radius:20px;width:100%;height:100%'><cols><col width='33%'><col width='33%'><col width='33%'></cols><tr style='cursor:pointer'><td style='border-radius: 20px 0px 0px 0px;' id='backward-image'>&laquo; Назад<\/td><td id='close-image'>Закрыть<\/td><td style='border-radius: 0px 20px 0px 0px;' id='forward-image'>Вперёд &raquo;<\/td><\/tr><tr><td colspan='3'><img style='width:auto;max-width:90%;height:" + $window.height() * 0.9 + "px' src='" + $original.attr("src") + "'><\/td><\/tr><\/table>").appendTo($window)
+            var current = parseInt($original.data('tag'))
+            var next = (current + 1) % imagecount
+            var prev = (imagecount + current - 1) % imagecount
+            console.log(prev, current, next)
+            $("#backward-image").click(function() {
+                showImage($(".tag" + prev))
+            })
+            $("#forward-image").click(function() {
+                showImage($(".tag" + next))
+            })
+            $("#backward-image,#forward-image,#close-image").hover(function() {
+                $(this).css("background", "rgba(255,255,255,0.5)")
+            }, function() {
+                $(this).css("background", "transparent")
+            })
+        }        
+    </script>
+
+
+    <div id="photos">
+        {% set image_count = 0 %}
+        {% set work_order = [
+                'Гибка алюминиевых оконных и дверных профилей', 
+                'Гибка алюминиевых фасадных профилей для плоского остекления (по Х)', 
+                'Гибка алюминиевых фасадных профилей для молированого остекления (по Y)', 
+                'Двухплоскостная гибка алюминиевых фасадных профилей (по X и Y)',
+                'Гибка алюминиевых фасадных профилей для арок на радиусных стенах (X, Y, Z)', 
+                'Гибка профилей для перегородок и для перил', 
+                'Гибка стальных профилей', 
+                'Гибка алюминиевых профилей общестроительного назначения',
+            ] 
+        %}
+        {% for worktype in work_order %}
+            <div style="height: 115px; overflow-x: scroll; overflow-y: hidden; margin-bottom: 5px">
+                <div class='imgs' style="height: 100px; width: 2000px; background: url('/static/img/cadre.png'); background-size: auto 100%; display: block">
+                    {% for img in prj.cv[worktype] %}
+                        <a class="a-cadre" style="display: inline-block; margin: 0px; padding: 0px; margin-top: 15px; margin-right: -5px; " onclick="showImage($('.tag{{ image_count }}'))">
+                            <img src="{{ img['path'] }}" style="border: 1px solid rgba(0,0,0,0.9); height: 67px; width: auto; margin: 0px;" class="tag{{ image_count }}" data-tag="{{ image_count }}">
+                        </a>
+                        {% set image_count = image_count + 1 %}
+                    {% end %}
+                </div>
+            </div>
+        {% end %}
+    </div>
+    
+    <script>
+        imagecount = {{ image_count }};
+        
+        $(function() {
+            $(".vmenu").css("margin-top", "-6px")
+            $(".vmenu li a").css("height", "95px").css("margin-bottom", "13px")
+            
+            $(".a-cadre").hover(function() {
+                $(this).find("img").css("border", "1px solid #007BC2")
+                $(this).css("border-bottom", "none")
+            }, function() {
+                $(this).find("img").css("border", "1px solid rgba(0,0,0,0.8)")
+                $(this).css("border-bottom", "none")
+            })
+        })
+    </script>
+    
+    <!--
+    var $img = $("<img>").attr("src", img_url).css("border", "1px solid rgba(0,0,0,0.8)").css("height", "67px").css("width", "auto").css("margin", "0px").addClass("tag" + imagecount).data("tag", imagecount)
+                        //.css("margin-left","3px")
+                        //.css("border","1px solid red")
+                        //.css("width", "108px")
+                        //.css("height", "81px")
+                        //.css("background","rgba(0,0,0,0.4)") 
+                    imagecount++;
+                    var $pad = $("<div><\/div>").css("display", "inline-block").css("margin-top", "14px").css("padding", "0px")
+                        //.attr("href", img_url)
+                        //.attr("target","_blank")
+                    var $link = $("<a>").click(function() {
+                        var $img = $(this).find("img");
+                        showImage($img)
+                    }).hover(function() {
+                        $(this).find("img").css("border", "1px solid rgba(0,0,255,0.8)")
+                    }, function() {
+                        $(this).find("img").css("border", "1px solid rgba(0,0,0,0.8)")
+                    })
+                    $pad.append($link.append($img)).appendTo($lenta)</script>
+    
+    <!--
+        $.fn.center = function() {
+            this.css("position", "absolute");
+            this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+            this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+            return this;
+        }
+
+        function showImage($original) {
+            $("#image-window").remove()
+            var $window = $("<div style='box-shadow: 4px 4px rgba(0,0,0,0.9);border-radius:20px;' id='image-window'><\/div>").width(window.screen.width * 0.8).height(window.screen.height * 0.8).css("position", "absolute").css("background", "rgba(0,0,0,0.9)").css("z-index", "1000").css("text-align", "center").appendTo("body").center().click(function() {
+                $(this).remove()
+            })
+            var $table = $("<table style='color:white;font-weight:bold;border-radius:20px;width:100%;height:100%'><tr style='cursor:pointer'><td style='border-radius: 20px 0px 0px 0px;' id='backward-image'>&laquo; Назад<\/td><td id='close-image'>Закрыть<\/td><td style='border-radius: 0px 20px 0px 0px;' id='forward-image'>Вперёд &raquo;<\/td><\/tr><tr><td colspan='3'><img style='width:auto;max-width:90%;height:" + $window.height() * 0.9 + "px' src='" + $original.attr("src") + "'><\/td><\/tr><\/table>").appendTo($window)
+            var current = parseInt($original.data('tag'))
+            var next = (current + 1) % imagecount
+            var prev = (imagecount + current - 1) % imagecount
+            console.log(prev, current, next)
+            $("#backward-image").click(function() {
+                showImage($(".tag" + prev))
+            })
+            $("#forward-image").click(function() {
+                showImage($(".tag" + next))
+            })
+            $("#backward-image,#forward-image,#close-image").hover(function() {
+                $(this).css("background", "rgba(255,255,255,0.5)")
+            }, function() {
+                $(this).css("background", "transparent")
+            })
+        }
+        imagecount = 0
+
+        function addlenta(addr) {
+            var $scroller = $("<div><\/div>").css("height", "115px").css("overflow-x", "scroll").css("overflow-y", "hidden").css("margin-bottom", "5px")
+            var $lenta = $("<div class='imgs'><\/div>").css("height", "100px").css("width", "2000px").css("background", "/static/img/cadre.png").css("background-size", "auto 100%").css("display", "block")
+            $scroller.append($lenta).appendTo("#photos")
+            $.get(addr).done(function(text) {
+                var r = new RegExp('/images/slider1/[^"]+', 'g')
+                while (img_url = r.exec(text)) {
+                    var $img = $("<img>").attr("src", img_url).css("border", "1px solid rgba(0,0,0,0.8)").css("height", "67px").css("width", "auto").css("margin", "0px").addClass("tag" + imagecount).data("tag", imagecount)
+                        //.css("margin-left","3px")
+                        //.css("border","1px solid red")
+                        //.css("width", "108px")
+                        //.css("height", "81px")
+                        //.css("background","rgba(0,0,0,0.4)") 
+                    imagecount++;
+                    var $pad = $("<div><\/div>").css("display", "inline-block").css("margin-top", "14px").css("padding", "0px")
+                        //.attr("href", img_url)
+                        //.attr("target","_blank")
+                    var $link = $("<a>").click(function() {
+                        var $img = $(this).find("img");
+                        showImage($img)
+                    }).hover(function() {
+                        $(this).find("img").css("border", "1px solid rgba(0,0,255,0.8)")
+                    }, function() {
+                        $(this).find("img").css("border", "1px solid rgba(0,0,0,0.8)")
+                    })
+                    $pad.append($link.append($img)).appendTo($lenta)
+                }
+            })
+        }
+        $(function() {
+            $("#photos").html("")
+            $secs = $(".vmenu a")
+            for (var i = 0; i < $secs.length; i++) {
+                addlenta($secs[i].href)
+            }
+            $(".vmenu").css("margin-top", "-2px")
+            $(".vmenu li a").css("height", "95px").css("margin-bottom", "13px")
+        })
+    -->
+{% end %}

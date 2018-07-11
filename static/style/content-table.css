@@ -1,0 +1,38 @@
+.content-table {
+    display: inline-block;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px #ccc;
+    padding: 20px 20px 30px 20px;
+    margin: 20px;
+    margin-top: 0px;
+    float: right;
+}
+
+.content-table-header {
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+a.header-link {
+    display: block;    
+    line-height: 25px;
+}
+
+a.header-link:first-child {
+}
+
+a.header-link:last-child {
+    border-bottom: none;
+}
+
+a.header-link-h1 {
+}
+
+a.header-link-h2 {
+    padding-left: 20px;
+}
+
+a.header-link-h3 {
+    padding-left: 40px;
+}

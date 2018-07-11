@@ -1,0 +1,82 @@
+.main-content a {
+    color: black;
+    display: inline;
+    background: none;
+    border: none; 
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+.main-content ul,
+.main-content ol {
+    margin: 0px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+.main-content ul li,
+.main-content ol li {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 2px;
+}
+
+.main-content ol ul,
+.main-content ul ul {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.main-content ol table,
+.main-content ul table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main-content ol p,
+.main-content ul p {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    line-height: 1.4;
+}
+
+.main-content h1 {    
+	font-variant: small-caps;
+}
+
+.main-content footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.main-content footer a {
+    color: inherit;
+    border: none;
+}
+
+.main-content figure {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin: 0px;
+    background: white;
+    box-shadow: 1px 1px 1px #e0e0e0;
+}
+
+.main-content figure figcaption {
+    font-style: italic;
+}
+
+.main-content figure img {
+    cursor: pointer;
+}

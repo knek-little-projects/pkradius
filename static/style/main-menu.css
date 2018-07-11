@@ -1,0 +1,39 @@
+.main-menu hr {
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.main-menu ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.main-menu li {
+    display: block;
+    width: 100%;
+}
+
+.main-menu a {
+    color: #e44;
+    background: transparent;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: inherit;
+    border-bottom: none;
+    width: 100%;
+}
+
+.main-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+}

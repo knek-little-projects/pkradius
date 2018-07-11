@@ -1,0 +1,37 @@
+{% extends "../main.html" %}
+
+{% block title %}
+    {{ title }}
+{% end %}
+
+{% block content %}
+    <div class="slick-wrapper">
+        <div class="slick-arrows">
+            <button class="prevArrow">&larr;</button>
+            <button class="pauseArrow" onclick='$(".slider").slick("slickPause");$(this).hide();$(".playArrow").show()'>||</button>
+            <button class="playArrow" onclick='$(".slider").slick("slickPlay");$(this).hide();$(".pauseArrow").show()'>&gt;</button>
+            <button class="nextArrow">&rarr;</button>
+        </div>
+        <div class="slider slider-nav">
+            {% for img in prj.cv[title] %}
+                <div>
+                    <img class="window" src="{{ img['path'] }}">
+                </div>
+            {% end %}
+        </div>
+    </div>
+    <script>
+        $(function(){
+            slider = $(".slider.slider-nav").slick({
+                speed: 500,
+                autoplaySpeed: 2500,
+                autoplay: true,
+                fade: true,
+                cssEase: 'linear',
+                adaptiveHeight: true,
+                prevArrow: $(".prevArrow"),
+                nextArrow: $(".nextArrow")
+            })
+        })
+    </script>
+{% end %}

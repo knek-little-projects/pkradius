@@ -1,0 +1,71 @@
+table.general th,
+table.general td {
+    text-align: left;
+    vertical-align: top;
+    padding: 5px;
+}
+
+table.general th {
+    vertical-align: top;
+}
+
+table.general th,
+table.general td {
+    border-left: 1px solid #e0e0e0;
+}
+
+table.general th:last-child,
+table.general td:last-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+table.general tr:last-child th,
+table.general tr:last-child td {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table.general th {
+    border-top: 1px solid #e0e0e0;
+    background: #eee;
+}
+
+table.general tr:nth-child(odd) td {
+    background: #f0f0f0;
+}
+
+table.general tr:nth-child(even) td {
+    background: #fafafa;
+}
+
+table.general input.search {
+    border: none;
+    margin: none;
+    padding: none;
+    box-shadow: none;
+    background: none;
+    display: inline;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: left;
+    color: gray;
+}
+
+table.general.child {
+    border: none;
+}
+
+table.general.child tr td,
+table.general.child tr th {
+    vertical-align: top;
+    text-align: left;
+    padding: 0px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    border: none;
+    background: inherit;
+}
+
+table.general th.text-center,
+table.general td.text-center {
+    text-align: center;
+}
